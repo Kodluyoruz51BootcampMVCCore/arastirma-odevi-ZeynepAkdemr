@@ -7,3 +7,8 @@
 4. Takip Ettiğin 2 yazılımcıyı araştır.
 5. Devler Azure'da araştır [Eğitim-Workshop]
 6. Yazılım ile ilgili Yarışmaları araştır (Örneğin: GGJ)
+
+# Hafta 1
+İçerisinde 2 klasör bulunmaktadır.
+. Bunlardan Solid klasörü Solid prensipleri ile dokümanı içerir. Açmak için solid.adoc dosyasını açmak yeterlidir.
+. Diğer klasörde araştırmalar bulunuyor. Bunu açmak için de arastırmalar.adoc dosyasını açmak yeterlidir.
