@@ -9,6 +9,8 @@
 6. Yazılım ile ilgili Yarışmaları araştır (Örneğin: GGJ)
 
 # Hafta 1
+
 İçerisinde 2 klasör bulunmaktadır.
-. Bunlardan Solid klasörü Solid prensipleri ile dokümanı içerir. Açmak için solid.adoc dosyasını açmak yeterlidir.
-. Diğer klasörde araştırmalar bulunuyor. Bunu açmak için de arastırmalar.adoc dosyasını açmak yeterlidir.
+
+1. Bunlardan Solid klasörü Solid prensipleri ile dokümanı içerir. Açmak için solid.adoc dosyasını açmak yeterlidir.
+2. Diğer klasörde araştırmalar bulunuyor. Bunu açmak için de arastırmalar.adoc dosyasını açmak yeterlidir.
