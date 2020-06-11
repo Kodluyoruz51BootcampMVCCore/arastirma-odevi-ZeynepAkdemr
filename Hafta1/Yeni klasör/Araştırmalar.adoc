@@ -1,0 +1,95 @@
+= ARAŞTIRMALAR
+
+== MICROSOFT BUILD ETKINLIKLERI
+
+. Client-Side Blazor
+. ASP.NET Core Hosted Blazor
+. Server-Side Blazor
+
+==== Client-Side Blazor
+
+High-level dillerde yazılan kodun wasm a dönüşüp, browser içerisinde javascript sandbox ı içerisinde çalıştırılabilmesi mümkün. Hatta bu zaten WebAssembly nin en güçlü özelliklerinden biri.
+
+Blazor için bu senaryo aşağıdaki şekilde gerçekleşiyor.
+
+Yazılan C#/Razor dosyaları compile olup .dll haline geliyor. daha sonra bu .dll dosyalarımız mono.wasm runtime ın da çalışabilir hale geliyor. mono.wasm da, javascript runtime üzerinde çalışıyor. Yani özetle şuan bir .dll dosyamız wasm olarak browserda çalışmak için mono ya biraz muhtaç. Ama bunlar arka planda olan şeyler, kullanırken mono vs uğraşmıyorsunuz. Ama yine de bu mono dan itibaren başlayan xamarin in gücünü ve arka planındaki güzelliği de bilmek açısından değerlidir.
+
+image::1.png[]
+
+==== WebAssembly ve Microsoft Asp.Net Core Blazor
+
+Tarihi çok da eskilere gitmemekle beraber öncesinde bir grubun poc olarak başlattığı fakat sonradan çarşının karışabileceği belli olduğundan birçok dünya devininde geliştirilmesine yatırımlar yaptığı bir teknoloji haline geldi webassembly.
+
+Geçmişi tam olarak şöyle;
+
+image::2.png[]
+
+2017 yılında işe Apple, Google, Mozilla, Facebook ve benzeri devlerin de devreye girmesiyle hayalin gerçeğe dönüşmesi işi başladı.
+
+Ne olduğunu tek bir cümlede anlatmak zor, ama özetle şu;
+
+* Modern browserlar üzerinde hiçbir plugin e gerek kalmadan (Flash, Silverlight vb.) çalışacak olan, client side (– server side desteği ile de,  ki .NetCore 3.0 içerisinde bu şekilde gelecek malesef, signalr destekli olarak. -) web yazılımına yeni özellikler ve performans katmayı amaçlayan yeni bir binary kod tipi.
+Kendi sitelerinde söyledikleri de tam olarak şu aslında;
+
+* Binary formata sahip, stack-based bir virtual machine. High-Level dillerin (C#, Java vb.) kendisine compile edilebilmesi ve client ve server uygulamaları için web üzerinden deploy edilmesi ile asıl farkı yaratıyor.
+Bu tek cümle yetersiz kaldığı kadar güçsüz de kalıyor. Az daha örneklersek şöyle oluyor;
+
+* High-Level bir dilde yadığınız kodu, .wasm a compile edip (bu kısma aşağıda web assembly yi nasıl yazarız kısmında değineceğim) web e deploy ederek, client side kodu gibi kullanabiliyorsunuz.
+Aslında nasıl node.js ile front-end yazan arkadaşlarımız bir anda backendci ve fullstack oluverdilerse, bu sayede backend ci arkadaşlar da artık javascript yazmadan frontend ci olabilecekler (html + css hariç).
+
+== Microsoft Build 2020 Yeniliklerini
+
+* Build 2020’de operasyonel veritabanı hizmetlerini ve analitiği gerçek zamanlı olarak bir araya getiren Azure Synapse Link tanıtıldı. Maliyetleri düşüren ve zaman kazandıran Azure Synapse Link, veri hareketlerini yönetmeye gerek kalmadan müşterilerin değerli bilgiler elde etmesini sağlıyor.
+
+* Geliştiricilerin Visual Studio ve Visual Studio Code’dan Teams uygulamaları oluşturmaları ve yayınlamaları için Microsoft Teams’e, yenilikler sunuldu. Bu yeni yetenekler BT yöneticilerinin Teams’teki kullanıcıların iş kollarını ve ISV uygulamalarını değerlendirmesine ve iş dağılımı yapmasına olanak tanıyor.
+
+* Yeni güncellemeler eklenen Fluid Framework, açık kaynak platformu olarak geliştiricilere sunulmaya başlandı. Böylece Office.com ve Web için Outlook’taki Fluid bileşenleri de son kullanıcılara sağlanmış oldu.
+
+* Azure Machine Learning ve OSS araçlarına getirilen yeniliklerle müşterilerin yapay zekâ modellerini daha sorumlu bir şekilde kullanmasına yardımcı olmak için yeni Responsible ML (Sorumlu Makine Öğrenmesi) araçları sunuldu. Bu araç, model yorumlama yeteneğini geliştirerek veri güvenliğini ve kullanıcı gizliliği garanti altına alacak, yapay zeka sistemlerinin geliştirilmesinde sorumluluk anlayışını güçlendirecek.
+
+* Etkinlikte, 1 milyar Windows 10 cihazında birlikte uygulama geliştirmeye yardımcı olmak için Project Reunion girişimi de tanıtıldı. Project Reunion, Win32 ve UWP API’leri ile entegrasyonu kolaylaştırmak ve Windows 10 sürümleri kullanılan tüm cihazlarda çalışan kullanışlı uygulamalar geliştirmek üzere bir “Windows geliştirici platformu” olarak oluşturuldu.
+* Power Automate çözümüne kapsamlı düşük kodlu Robotik Proses Otomasyonu (RPA) teknolojisini sunmak için yatırımlarını sürdüren Microsoft, düşük kodlu ve kullanımı kolay RPA geliştirme ortamlarının lider sağlayıcısı Softomotive’i satın aldı. Softomotive’in teknolojisi, Microsoft müşterilerinin işlerini kolaylaştırmak için kullanıcı arayüzü akışlarına destek olan çözümler sunmaya başladı.
+
+* Etkinlikte, Azure’da yer alan dünyanın en güçlü süper yapay zekâ bilgisayarlarından birini de duyuruldu. OpenAI ile işbirliğiyle özel olarak geliştirilen bu süper bilgisayar gücünü Azure bulut altyapısından alıyor. Sistem, dağıtılmış devasa yapay zekâ modelleri geliştirmek için özel olarak tasarlandı.
+
+* Visual Studio ürün ailesiyle Microsoft, her geliştiriciye sınıfının en iyisi araçları sağlanmaya devam ediyor. Build 2020’de, yeni bir geliştirici kutusu kurmak, yeni bir projeye katılırken veya uzaktan çalışmaya geçerken ortak bir senaryo oluşturmak için Visual Studio Codespaces de tanıtıldı. VS Codespaces, geliştiricilerin dakikalar içinde tamamen yapılandırılmış geliştirme ortamları oluşturması için bulutun gücünden faydalanıyor.
+
+* Geliştiricilerin bulut deneyimine kesintisiz kod sağlamak için, GitHub Actions for Azure (Azure için GitHub Eylemleri) platformuna yapılan yeni entegrasyonlar da duyuruldu. Ekiplerin iş akışlarını kolayca oluşturmasına, test edip yayınlamasına, dağıtmasına ve otomatikleştirmesine yardımcı olan 30’dan fazla GitHub Eylemi geliştiricilere sunuldu.
+
+* Build 2020’de ayrıca Microsoft’un sağlık sektörüne özgü ilk bulut hizmeti olan Microsoft Cloud for Healthcare (Sağlık için Microsoft Bulut) tanıtıldı. Hizmet, müşteriler ve iş ortaklarının hasta bakımını güçlendiriyor, bakım ekiplerinin bağlantılı hizmet yürütmesini sağlıyor; işbirliği, karar verme ve operasyonel verimliliği artırma yetenekleri sunuyor. Microsoft Cloud for Healthcare, Teams’teki Bookings uygulaması gibi, sağlık kurumlarındaki çevrimiçi randevuları zamanlamaya ve yönetmeye yarayan araçlara destek sağlayacak.
+
+== Takip Ettiğim Yazılımcılar
+
+* Şadi Evren ŞEKER : 
+Şadi hocanın youtube kanalında paylaştığı pek çok şey işime yaradı. Gerek bilgisayar ağları gibi bir konuda bilgi sahibi olması gerekse Web tasarım gibi konularda paylaşım yapması pek çok alana hitap etmesini sağlıyor.
+Kendisi Bilgisayar Kavramlari isimli youtube da hemen hemen her dalda egitimler vermektedir. Bilgisayar Mühendisi olan sadi Bey Türkiye'nin en nadide egitimcilerinden birisidir. Firat Üniversitesi'nde Dr Ögretim Görevlisi olan kiymetli hocamiz çok iyi derecede ingilizce bilgisine sahiptir. Youtube yayinlari ile birçok yazilimciya isik tutan Sadi Hocamiz teknik donanim bakimindan birçok egitimcinin önündedir. Kendisini birçok platformda takip etmekteyim :)
+
+image::s.jpg[]
+
+* Murat Yücedağ
+Murat hocanın da udemyde olan kurslarının yanında youtubeda da olan konularıyla özellikle C# diliyle hazırladığı projeler uygulamalrından faydalanmaya çalıştım. Firat Üniversitesi Yazilim Mühendisligi bölümünden mezun olan hocamiz yazilim egitimleri konusunda özellikle sifirdan yazilimci yetistirme bölümünde çok basarilidir. Youtube kanalinda 1000 üzeri videolarindan çogu yazilimci arkadaslar istifade etmekte ayni zamanda UDEMY platformunda ileri düzey egitimleri de mevcuttur. c# Egitimi isimli kitabi ile ayrica yayinlari da bulunmaktadir. Casper Netflix gibi firmalarda dönemsel olarak çalisan hocamizin sektör tecrübesi de ayrica bulunmaktadir. Aynı Şadi hoca da olduğu gibi Murat hocayı da pek çok platformda takip etmekteyim.
+
+image::m.jpg[]
+
+== Devler Azure
+
+Türkiye’nin alanında lider uzmanlarıyla buluşturan Dev’ler Azure’da Programdır.
+20 etkinlik ile başlayıp, yıl boyunca devam eden bir programdır. Yer alan etkinliklerden bazıları şöyledir:
+
+. Kubernetes Atölyesi
+. DevOps Atölyesi
+. Topluluk Liderleri İle Atölyeler
+
+== Yazılım Yarışmaları
+
+=== Hackathon
+En basit haliyle bir kodlama yarışmasıdır. “Hack day”, “Hackfest”, “Code fest”, “Code camp” gibi isimlerle de karşımıza çıkabilir. Hackathon genellikle yazılım geliştiricilerinin, arayüz tasarımcılarının ve bilgisayar programcılarının 3-5 kişilik gruplar halinde bir araya gelerek 1-2 gün boyunca çalışarak yeni bir proje geliştirdikleri yarışmadır.
+
+Şirketlerin hackathon düzenlemelerinin iki temel nedeni vardır. Bunlardan ilki etkinliğin sonunda ortaya çıkan ürünü kullanmak, ki bu şirketlere Facebook örnek verilebilir. Facebook her 3 ayda bir düzenli olarak hackathon düzenlemekte ve birçok ürününü buradaki çalışmalar sonucunda çıkarmaktadır.
+
+Bir diğer nedeni ise şirketlerin yetenek kazanma istekleridir. Şirketler bünyelerinde en iyi yeteneklere iş ve staj fırsatı vermek isterler. Hackathonlar ise bu yeteneklere ulaşmak için en verimli yollardan biridir. Aynı şekilde teknoloji alanında kariyer hedefleyen gençler için, en iyi teknoloji şirketlerine girebilmek açısından da bir fırsattır.
+
+image::h.jpg[]
+
+=== GGJ
+Global Game Jam (GGJ), her yıl dünyanın birçok yerinde aynı anda düzenlenen bir game jam'dir. İlham kaynağı kuzey ülkelerinde düzenlenen, yaratıcılık, iş birliği ve deneysellik ögelerini bir araya getirmeyi amaçlayan Nordic Game Jam'dir. Etkinlik yılın belirli günlerinde dünya çapındaki farklı alanlarda eş zamanlı olarak gerçekleştirilir. Etkinlik alanlarında katılımcılar bir araya gelerek sınırlı bir zaman diliminde fikirler üretir; küçük takımlar kurar; yaratıcı ve yenilikçi oyunlar geliştirir; geliştirdikleri oyunları diğer katılımcılara ve uluslararası camiaya sunar. 2013 itibarıyla, etkinlik Global Game Jam Incorporated tarafından organize edilmektedir.Ocak 2014'te, GGJ 73 ülkede 485 farklı etkinlik alanında düzenlenmiştir ve bir hafta sonu süren etkinlik sonucunda 4,289 oyun geliştirilmiştir.Global Game Jam tescilli bir ticari markadır.
